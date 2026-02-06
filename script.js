@@ -1,4 +1,4 @@
-// ---------------- BOOK DATA ----------------
+
 const books = [
   { title:"Harry Potter", author:"J.K. Rowling", year:1997, wiki:"https://en.wikipedia.org/wiki/Harry_Potter", cover:"https://covers.openlibrary.org/b/id/8231856-L.jpg" },
   { title:"The Hobbit", author:"J.R.R. Tolkien", year:1937, wiki:"https://en.wikipedia.org/wiki/The_Hobbit", cover:"https://covers.openlibrary.org/b/id/6979861-L.jpg" },
@@ -12,7 +12,7 @@ const books = [
   { title:"Animal Farm", author:"George Orwell", year:1945, wiki:"https://en.wikipedia.org/wiki/Animal_Farm", cover:"https://covers.openlibrary.org/b/id/8231999-L.jpg" }
 ];
 
-// ---------------- ADD TO MY LIST ----------------
+
 function addToList(book){
   const list = JSON.parse(localStorage.getItem("favourites"))||[];
   if(!list.find(b=>b.title===book.title)){
@@ -22,7 +22,7 @@ function addToList(book){
   }
 }
 
-// ---------------- CREATE BOOK CARD ----------------
+
 function createCard(book){
   const div = document.createElement("div");
   div.className="book-card";
@@ -38,11 +38,11 @@ function createCard(book){
 
 document.addEventListener("DOMContentLoaded",()=>{
 
-  // --- BROWSE BOOKS PAGE ---
+  
   const allBooks=document.getElementById("allBooks");
   if(allBooks) books.forEach(b=>allBooks.appendChild(createCard(b)));
 
-  // --- MY LIST PAGE ---
+  
   const favList=document.getElementById("favouritesList");
   if(favList){
     const favs=JSON.parse(localStorage.getItem("favourites"))||[];
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
 
-  // --- CONTACT FORM ---
+  
   const contactForm=document.getElementById("contactForm");
   if(contactForm){
     contactForm.addEventListener("submit",e=>{
@@ -64,13 +64,13 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
 
-  // --- FEEDBACK PAGE ---
+  
   const reviewForm=document.getElementById("reviewForm");
   const bookSelect=document.getElementById("bookSelect");
   const reviewsList=document.getElementById("reviewsList");
 
   if(reviewForm){
-    // populate book dropdown
+    
     books.forEach(b=>{
       const option=document.createElement("option");
       option.value=b.title;
@@ -78,8 +78,30 @@ document.addEventListener("DOMContentLoaded",()=>{
       bookSelect.appendChild(option);
     });
 
-    // load reviews
+    
     function loadReviews(){
       reviewsList.innerHTML="";
       const reviews=JSON.parse(localStorage.getItem("reviews"))||[];
       if
+        
+const weatherDiv = document.getElementById("weather");
+if (weatherDiv) {
+  const apiKey = "YOUR_API_KEY"; 
+  const city = "London"; 
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    .then(response => response.json())
+    .then(data => {
+      const temp = data.main.temp;
+      const desc = data.weather[0].description;
+      const icon = data.weather[0].icon;
+      weatherDiv.innerHTML = `
+        <p>Weather in ${city}: ${temp}°C, ${desc} <img src="https://openweathermap.org/img/wn/${icon}.png" alt="${desc}"></p>
+      `;
+    })
+    .catch(err => {
+      console.error(err);
+      weatherDiv.innerHTML = "<p>Unable to load weather data</p>";
+    });
+}
+
