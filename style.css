@@ -71,3 +71,14 @@ footer { margin-top:3rem; text-align:center; color: var(--text-muted); }
 
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.grid{grid-template-columns:1fr;}}
+.hero-weather {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #1e293b;
+  border-radius: 12px;
+  display: inline-block;
+  color: #e5e7eb;
+  font-weight: 500;
+  text-align: center;
+}
+
